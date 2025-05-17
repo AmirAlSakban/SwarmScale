@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  visualizer:
+    image: dockersamples/visualizer
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+  nginx:
+    image: nginx-lb:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - node-app
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+
+  node-app:
+    image: node-app:latest
+    deploy:
+      replicas: 10
+      restart_policy:
+        condition: on-failure
