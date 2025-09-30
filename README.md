@@ -1,4 +1,4 @@
-# Docker Swarm Node.js Application with Nginx Load Balancer
+# SwarmScale - High-Performance Container Orchestration Demo
 
 This project demonstrates a Node.js application that is scaled to multiple instances and load-balanced using an Nginx server. The stack is deployed using Docker Swarm, meeting the following requirements:
 - A Node.js application handling requests on `/whoami` and responding with the hostname
